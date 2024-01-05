@@ -1,7 +1,7 @@
 # animalGPT_behind_the_scenes
 Working directory of animalGPT
 
-Current work 
+Speaker Identification process for training
 - [x] Common steps
    - [x] Extract audio file from video, convert to WAV format. Expected output: `audio.wav`
 1. Speaker identification on complete file. Expected output
@@ -26,4 +26,20 @@ Current work
 1. Expected output: 
    ```py
    combined_output=[{"start": 0.0, "end":10.0, "speaker": "Speaker1", "word": "lalala"},...]
-   ```
+     ```
+
+[] Clean Notebooks and annotate with markdowns to explain each process 
+
+Curating all text dataset
+- [] need to get all the info related to the film ( plot,script, crew, cast, production information)
+  - [] Scrape Wikipedia,
+  - [] use IMDB pro for getting any missing information
+- [] Use the Speaker identification to get all the interviews from youtube processed and stored in csv
+
+Model Trainig
+- [] Finalize list of LLMs to be tested
+- [] Create metrics for performance testing (f1 score, accuracy, perplexity)
+- [] Create a validation set for testing the above metrics
+
+
+
