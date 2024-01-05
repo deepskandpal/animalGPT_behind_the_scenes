@@ -28,18 +28,18 @@ Speaker Identification process for training
    combined_output=[{"start": 0.0, "end":10.0, "speaker": "Speaker1", "word": "lalala"},...]
      ```
 
-[] Clean Notebooks and annotate with markdowns to explain each process 
+- [ ] Clean Notebooks and annotate with markdowns to explain each process 
 
 Curating all text dataset
-- [] need to get all the info related to the film ( plot,script, crew, cast, production information)
-  - [] Scrape Wikipedia,
-  - [] use IMDB pro for getting any missing information
-- [] Use the Speaker identification to get all the interviews from youtube processed and stored in csv
+- [ ] need to get all the info related to the film ( plot,script, crew, cast, production information)
+  - [ ] Scrape Wikipedia,
+  - [ ] use IMDB pro for getting any missing information
+- [ ] Use the Speaker identification to get all the interviews from youtube processed and stored in csv
 
 Model Trainig
-- [] Finalize list of LLMs to be tested
-- [] Create metrics for performance testing (f1 score, accuracy, perplexity)
-- [] Create a validation set for testing the above metrics
+- [ ] Finalize list of LLMs to be tested
+- [ ] Create metrics for performance testing (f1 score, accuracy, perplexity)
+- [ ] Create a validation set for testing the above metrics
 
 
 
