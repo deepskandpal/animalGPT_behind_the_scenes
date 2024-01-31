@@ -1,0 +1,12 @@
+/logs
+/youtube_audio_files
+*.env
+*.csv
+*.json
+*.ipynb
+*.safetensors
+*.txt
+__pycache__
+.DS_Store
+.ipynb_checkpoints/
+anmialGPTV1/
