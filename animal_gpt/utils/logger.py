@@ -51,7 +51,7 @@ logger = Logs(log_filename)
 def log(func):
     def wrapper(*args, **kwargs):
         # Call the original function
-        output = func(*args, **kwargs)
+        output, probabilities, thumbs_value ,prompt_selected = func(*args, **kwargs)
         timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
         # Log the activity
         user_input = args[0]  # Assuming user_input is the first argument
@@ -60,9 +60,11 @@ def log(func):
                 'log_level': 'INFO',
                 'timestamp': timestamp,
                 'user_input': user_input,
-                'thumbs_value': '1',  # You might want to adjust this based on your logic
+                'thumbs_value': thumbs_value,  # You might want to adjust this based on your logic
                 'response': output,
-                'activity_id': act_id
+                'activity_id': act_id,
+                'probability': probabilities,
+                'prompt_selected':prompt_selected
             }
         logs = pd.DataFrame(
             data=logs_dict,
@@ -76,7 +78,10 @@ def log(func):
             'user_input': str,
             'thumbs_value': str,
             'response': str,
-            'activity_id': str
+            'activity_id': str,
+            'probability':float,
+            'prompt_selected':str
+
         }
         logs = logs.astype(schema)
 

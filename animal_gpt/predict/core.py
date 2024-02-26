@@ -1,6 +1,6 @@
 from transformers import GPT2LMHeadModel, GPT2Tokenizer, pipeline
-import torch
-torch.manual_seed(100)
+# import torch
+# torch.manual_seed(100)
 from transformers import AutoTokenizer, AutoModel
 from sentence_transformers import SentenceTransformer, util
 import faiss
@@ -28,7 +28,6 @@ class Prediction:
         self.prediction_setup = PredictionSetup(model=self.model_embed, sentences=self.prompts_db["query"])
         self.index = self.prediction_setup.create_embedding_index()
 
-    @log
     def create_prediction(self, query):
         similar_sentences, probabilities = self.prediction_setup.find_similar_sentences(query=query, index=self.index)
         if probabilities[0] >= .60:
@@ -45,7 +44,18 @@ class Prediction:
             num_return_sequences=5,
             )
             output = self.tokenizer.decode(sample_output[0], skip_special_tokens=True)
+            probabilities = probabilities[0]
+            predicted_prompt = prompt["prompt"].iloc[0]
         else:
             output = "Looks like you are trying to ask something which I am not aware of while I was a general purpose GPT, currently I know only about Animal movie"
-        return output
-        
+            probabilities = 0.0
+            predicted_prompt = ""
+        return output, probabilities, predicted_prompt
+    
+    def streamer_prediction(self, query):
+        similar_sentences, probabilities = self.prediction_setup.find_similar_sentences(query=query, index=self.index)
+        prompt = self.prompts_db.query(f"query == '{similar_sentences[0]}'")
+        inputs = self.tokenizer([prompt["prompt"].iloc[0],], return_tensors="pt")
+        return inputs, probabilities
+
+
